@@ -2,13 +2,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Response;        // Response Components
-use App\Traits\ApiResponser;        // <-- use to standardize our code for api response
-use Illuminate\Http\Request;        // <-- handling http request in lumen
-use App\Services\User1Service;      // user1 Services
+use App\Traits\ApiResponser;        // <-- use to standardize our code for API response
+use Illuminate\Http\Request;        // <-- handling HTTP requests in Lumen
+use App\Services\User1Service;      // User1 Services
 
 class User1Controller extends Controller 
 {
-    // use to add your Traits ApiResponser
+    // Use to add your Traits ApiResponser
     use ApiResponser;
 
     /**
@@ -48,5 +48,36 @@ class User1Controller extends Controller
         );
     }
 
-    
+    /**
+     * Obtain and show one user by ID
+     * @param int $id
+     * @return Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return $this->successResponse($this->user1Service->getUser1($id));
+    }
+
+    /**
+     * Update an existing user record
+     * @param Request $request
+     * @param int $id
+     * @return Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        return $this->successResponse(
+            $this->user1Service->updateUser1($id, $request->all())
+        );
+    }
+
+    /**
+     * Remove an existing user
+     * @param int $id
+     * @return Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        return $this->successResponse($this->user1Service->deleteUser1($id));
+    }
 }
