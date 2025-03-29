@@ -48,5 +48,36 @@ class User2Controller extends Controller
         );
     }
 
-    
+    /**
+     * Obtain and show one user by ID
+     * @param int $id
+     * @return Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return $this->successResponse($this->user2Service->getUser2($id));
+    }
+
+    /**
+     * Update an existing user record
+     * @param Request $request
+     * @param int $id
+     * @return Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        return $this->successResponse(
+            $this->user2Service->updateUser2($id, $request->all())
+        );
+    }
+
+    /**
+     * Remove an existing user
+     * @param int $id
+     * @return Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        return $this->successResponse($this->user2Service->deleteUser2($id));
+    }
 }
