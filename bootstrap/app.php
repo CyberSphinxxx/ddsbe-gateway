@@ -36,6 +36,7 @@ $app->withEloquent();
 */
 $app->configure('app');
 $app->configure('services');
+$app->configure('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -67,13 +68,14 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+ $app->middleware([
+     App\Http\Middleware\ExampleMiddleware::class
+ ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+ $app->routeMiddleware([
+     'auth' => App\Http\Middleware\Authenticate::class,
+     'client.credentials'=> Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
+ ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +88,9 @@ $app->singleton(
 |
 */
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+ $app->register(App\Providers\AuthServiceProvider::class);
+ $app->register(Laravel\Passport\PassportServiceProvider::class);
+ $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
