@@ -18,27 +18,27 @@ class User2Service
         $this->secret = config('services.users2.secret');
     }
 
-    public function obtainUsers1()
+    public function obtainUsers2()
     {
         return $this->performRequest('GET', '/api/users');
     }
 
-    public function createUser1($data)
+    public function createUser2($data)
     {
         return $this->performRequest('POST', '/api/users', $data);
     }
 
-    public function getUser1($userId)
+    public function getUser2($userId)
     {
         return $this->performRequest('GET', "/api/users/{$userId}");
     }
 
-    public function updateUser1($userId, $data)
+    public function updateUser2($userId, $data)
     {
         return $this->performRequest('PUT', "/api/users/{$userId}", $data);
     }
 
-    public function deleteUser1($userId)
+    public function deleteUser2($userId)
     {
         return $this->performRequest('DELETE', "/api/users/{$userId}");
     }
